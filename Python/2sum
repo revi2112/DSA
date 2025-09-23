@@ -1,0 +1,19 @@
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        dict_index = {}
+        '''
+            iterate through array 
+            populate hash map with value and index and keep track of wanted at every point
+        '''
+        for index, value in enumerate(nums):
+            wanted = target-value
+            if wanted in dict_index:
+                return [index, dict_index[wanted]]
+            dict_index[value] = index
+        return []
+        
