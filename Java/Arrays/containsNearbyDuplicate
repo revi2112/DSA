@@ -1,0 +1,27 @@
+class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+
+        // no sorting
+
+        // brute for for loop i and j will be at i+k
+
+        // now we have start and end which is basically a window sliding widow / two pointer O(n^2) or nk without space ; with space O(n)
+
+    
+        HashSet<Integer> window = new HashSet<>(); // size should always be <=k 
+        int start = 0;
+        for(int end = 0; end<nums.length; end++){ // keep incresing end until it hits k from start
+            if(window.contains(nums[end])){
+                return true;
+            }
+            window.add(nums[end]);
+
+            if(end - start >=k){
+                window.remove(nums[start++]);
+            }
+
+        }
+       
+       return false;
+    }
+}
