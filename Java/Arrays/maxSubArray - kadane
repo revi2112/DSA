@@ -1,0 +1,20 @@
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int sum = Integer.MIN_value; // global max
+        int curr_sum = 0
+        /*
+        idea: keep moving at any point if adding results less sum stop
+        At each step:
+        Either start a new subarray with num
+        Or extend the current subarray by adding num.
+*/
+        for(int i = 0; i< nums.length;i++){
+            curr_sum +=  Math.max(num, currSum + num)
+            sum = Math.max(sum, currSum);
+
+        }
+    
+        return sum;
+    }
+
+}
