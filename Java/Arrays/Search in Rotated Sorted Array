@@ -1,0 +1,42 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        /*
+            once the rotation happens at every index we have 2 sorted parts , we need to find which part arrray belongs so use BS
+
+            as uausl check if mid is target 
+            1. check if low to mid is sorted 
+                1. yes right is sorted, check if element belongs to this part
+                2. a[l]<=target<= a[mid] hight = mid -1else low = mid + 1
+            2. same for right
+        */
+
+        int low = 0 , high = nums.length -1;
+        while(low <= high){
+            int mid = (low + high) /2;
+
+            if(nums[mid] == target){
+                return mid;
+            }
+
+            if(nums[low] <= nums[mid]){
+                //left sorted check target existance
+
+                if(nums[low]<= target && target <= nums[mid]){
+                    high = mid -1; // end will be before mid
+                }else{
+                    low = mid + 1; //move on
+                }
+            }
+            else{
+                // right is sorted mid to high
+                if(nums[mid]<= target && target <= nums[high]){
+                    low = mid + 1;
+                }else{
+                    high = mid - 1; //move on
+                }
+            }
+        }
+        return -1;
+        
+    }
+}
