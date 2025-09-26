@@ -1,0 +1,30 @@
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+      
+        '''
+        we have 3 cases 
+        case 1 : all +ve so answers would simple and sweet full array 
+        case 2 : 0 as an element so it would be either prefix of that or suffix of that
+        case 3 : -ve : if even no issue go head odd again prefix or suffix
+
+        so at each index find prefix prod and suff prod 
+        pref goes left to right and suff right to left n-i-1
+        keep max as track 0 rest
+        '''
+
+        prefix, suffix = 1 , 1
+        max_product = float(-inf)
+        n = len(nums)
+        for i in range(0,n):
+            if prefix ==0:
+                prefix = 1
+            if suffix ==0:
+                suffix = 1
+            
+            prefix *= nums[i]
+            suffix *= nums[n-i-1]
+            max_product = max(max_product, max(prefix, suffix))
+        
+        return max_product
+
+        
