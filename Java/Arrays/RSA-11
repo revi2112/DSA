@@ -1,0 +1,43 @@
+class Solution {
+    public boolean search(int[] nums, int target) {
+        /*
+        In a rotated sorted array (without duplicates), at least one half (low..mid or mid..high) is always sorted. with dups both might seem like it
+          if nums[low], nums[mid], and nums[high] are all the same, then none of them gives information about where the rotation or target lies. so low ++ and high --
+        */
+
+        int low = 0 , high = nums.length -1;
+        while(low <= high){
+            int mid = (low + high) /2;
+
+            if(nums[mid] == target){
+                return true;
+            }
+            //Edge case:
+            if (nums[low] == nums[mid] && nums[mid] == nums[high]) {
+                low = low + 1;
+                high = high - 1;
+                continue;
+            }
+
+            if(nums[low] <= nums[mid]){
+                //left sorted check target existance
+
+                if(nums[low]<= target && target <= nums[mid]){
+                    high = mid -1; // end will be before mid
+                }else{
+                    low = mid + 1; //move on
+                }
+            }
+            else{
+                // right is sorted mid to high
+                if(nums[mid]<= target && target <= nums[high]){
+                    low = mid + 1;
+                }else{
+                    high = mid - 1; //move on
+                }
+            }
+        }
+        return false;
+        
+    }
+}
