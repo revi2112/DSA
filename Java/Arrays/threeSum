@@ -1,0 +1,50 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+       /*
+       sum should be equal to 0 
+       brute for will be i j k and check sumation to 0 O(N^4)
+       or for each index i +J find 1 elements whose sum is compliemnt
+       O(n^2) and O(N) space // HASH SET  
+       */ 
+       /*
+       Approch 
+       1. sort array why? order doesn't matter can you BS to find 
+       2. Handle duplocated how ? ignore the search if current elemet same as old one will remove hashset contraint this ignoaration should be for all 3
+       3. 3 pointer i-> fixed, in loop j -> i+1 k starts from back use bs in j and k
+       */
+       List<List<Integer>> res = new ArrayList<>();
+       Arrays.sort(nums);
+       for(int i = 0; i<nums.length ; i++ ){
+        if(i!=0 && nums[i]== nums[i-1]) continue;
+        //2 pointers
+        int j = i+1;
+        int k = nums.length -1;
+        while(j<k){
+        int sum = nums[i]+nums[j]+nums[k];
+        if(sum == 0) {
+            List<Integer> triplet = Arrays.asList(nums[i], nums[j], nums[k]);
+            res.add(triplet);
+            //move on 
+            j++;
+            k--;
+            // here j and k can be dup too for same i if jor kis same keep moving   
+            while(j<k && nums[j] == nums[j-1]) j++;
+            while(j<k && nums[k] == nums[k+1]) k--;
+
+        }
+        else if(sum > 0){
+            // value is high reduce the maginitute
+            k--;
+        }
+        else{
+            j++;
+        }
+
+        }
+       
+
+       }
+       return res;
+       
+    }
+}
