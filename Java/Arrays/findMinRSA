@@ -1,0 +1,27 @@
+class Solution {
+    public int findMin(int[] arr) {
+        /*
+        sorted array fo BS and in sorted part low is always min
+        SO, each sorted array find min and discard that part of the arary
+        */
+
+        int low = 0, high = arr.length - 1;
+        int min_ele = Integer.MAX_VALUE;
+        while(low<=high){
+            int mid = (low+high)/2;
+
+            if(arr[low]<= arr[mid]){
+                // low to mid is sorted left half is sorted
+                min_ele = Math.min(arr[low], min_ele);
+                low = mid + 1; // remove left half
+
+            }
+            if(arr[mid]<= arr[high]){
+                // mid to high is sorted
+                min_ele = Math.min(arr[mid], min_ele);
+                high = mid -1; // remove right half because is considered
+            }
+        }
+        return min_ele;
+    }
+}
