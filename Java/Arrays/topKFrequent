@@ -5,18 +5,18 @@ class Solution {
 
         HashMap<Integer, Integer> hmap  = new HashMap<>();
 
-        for(num : nums){
-            hmap[num] = hmap.getOrDefault(num,0)+1
-        }
+        for (int num : nums) {
+    hmap.put(num, hmap.getOrDefault(num, 0) + 1);
+}
         // now iterate through each entry and create an arraylist
         List<int[]> arr = new ArrayList<>();
         for(Map.Entry<Integer, Integer> entry: hmap.entrySet()){
-            arr.add(new int[entry.getValue(), entry.getKey()])
+            arr.add(new int[] {entry.getValue(), entry.getKey()});
         }
         // sort on freq descding
-        arr.sort((a,b) -> b[0]-a[0])
+        arr.sort((a,b) -> b[0]-a[0]);
 
-        int[] res = new int[k]
+        int[] res = new int[k];
         for (int i = 0; i < k; i++) {
             res[i] = arr.get(i)[1];
         }
