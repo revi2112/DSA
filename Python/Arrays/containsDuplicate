@@ -13,6 +13,19 @@ class Solution(object):
                 return True
 
         return False
+
+class Solution:
+    def hasDuplicate(self, nums: List[int]) -> bool:
+        # methon 1 set and size 
+        freq = set()
+
+        for num in nums:
+            if num in freq:
+                return True
+            else:
+                freq.add(num)
+        return False 
+
     
 
         
