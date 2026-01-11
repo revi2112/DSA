@@ -1,0 +1,31 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        // approch 1 hash map with keys as sorted array and values as string 
+        // res is ArrayList<>(res.values)
+        //m*nlogn and 
+
+        HashMap<String, List<String>> res = new HashMap<>();
+        for(String s : strs){
+            char[] chararr = s.toCharArray();
+            Arrays.sort(chararr);
+            res.putIfAbsent(Arrays.toString(chararr), new ArrayList<>());
+            res.get(Arrays.toString(chararr)).add(s);
+        }
+        return new ArrayList<>(res.values());
+
+        //method 2 hash table 
+        // have count arr each req a letter and value will be freq
+        // insted of sorting each one find freq and string it and store removes the logm
+            Map<String, List<String>> res = new HashMap<>();
+        for (String s : strs) {
+            int[] count = new int[26];
+            for (char c : s.toCharArray()) {
+                count[c - 'a']++;
+            }
+            String key = Arrays.toString(count);
+            res.putIfAbsent(key, new ArrayList<>());
+            res.get(key).add(s);
+        }
+        return new ArrayList<>(res.values())
+    }
+}
