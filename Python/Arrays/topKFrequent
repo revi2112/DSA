@@ -17,3 +17,16 @@ class Solution:
             res.append(arr.pop()[1])
         return res
 
+#approch 2 min heap 
+//heapq min heap by default takes in a tuple
+
+        heap = []
+
+        # 3. Maintain heap size k
+        for num, count in count.items():
+            heapq.heappush(heap, (count, num))
+            if len(heap) > k:
+                heapq.heappop(heap)
+
+        # 4. Extract result
+        return [num for count, num in heap]
