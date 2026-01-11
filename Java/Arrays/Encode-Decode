@@ -1,0 +1,39 @@
+class Solution {
+
+    public String encode(List<String> strs) {
+            // add a char and append everything
+            // Create a StringBuilder and keep apending strings 
+            // "add a char" this char can be in str so keep track of length
+            // for every string length#string use this length to decode
+            StringBuilder res = new StringBuilder();
+            for(String str: strs){
+                res.append(str.length()).append('#').append(str);
+            }
+            return res.toString();
+    }
+
+    public List<String> decode(String str) {
+        List<String> res = new ArrayList<String>();
+        /*
+        iterate over the encoded string (i)
+        j -> until it finds # str[i,j] -> length of the string to scraoe
+        now move i to j + 1 (next to #) beinging of string, scarpe it till its length 
+        */
+
+        int i = 0;
+        while(i<str.length()){
+            int j = i;
+            while(str.charAt(j)!='#'){
+                j++;
+            }
+            int length = Integer.parseInt(str.substring(i,j));
+            i = j +1 ; 
+            res.add(str.substring(i,(i+length)));
+            i = i+length;
+
+
+        }
+        return res;
+
+    }
+}
