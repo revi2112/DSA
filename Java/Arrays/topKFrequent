@@ -23,3 +23,29 @@ class Solution {
         return res;
     }
 }
+/ aproch 2 for k elemnets we are sorking the entire list
+        // min heap of size k and smalled stays on top and it get replaced 
+        //O(m log k) Every push/pop costs O(log k)
+        
+        // min heap ([count, num]) no need to sort
+        // keep size <=k
+        PriorityQueue<int[]> heap = new PriorityQueue<>((a,b)->a[0]-b[0]);
+        for(Map.Entry<Integer, Integer> entry: hmap.entrySet()){
+            heap.offer(new int[]{entry.getValue(), entry.getKey()});
+            if(heap.size() > k){
+                heap.poll();
+            }
+        }
+
+        //result 
+        int[] res = new int[k];
+
+        for(int i =0; i<k;i++){
+            res[i] = heap.poll()[1];
+        }
+        return res;
+
+
+
+    }
+}
