@@ -1,0 +1,29 @@
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        // hash map index and elemt how to handle dup??? so no hash map to form sequence 
+       // to have a sequesence we need to have a start elemnt one elment is start if elem-1 doesn't exit
+        // use hash set to check
+
+        // iterate through list and keep adding +1 to each number and check
+        int max_len = 0;
+        HashSet<Integer> hset = new HashSet<>();
+         for (int num : nums) {
+            hset.add(num);
+        }
+
+        for(int num : nums){
+            if(!hset.contains(num-1)){
+               int length = 1;
+               // now that's the begining use the hset and  keep ading 1 and check
+               while(hset.contains(num + length)){
+                length ++;
+               }
+               max_len = Math.max(max_len, length);
+
+            }
+            
+        }
+        return max_len;
+
+    }
+}
